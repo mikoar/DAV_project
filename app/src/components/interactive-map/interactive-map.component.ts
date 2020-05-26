@@ -3,6 +3,8 @@ import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
 import am4geodata_germanyHigh from '@amcharts/amcharts4-geodata/germanyHigh';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
+import { last } from '@amcharts/amcharts4/.internal/core/utils/Array';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-interactive-map',
@@ -11,8 +13,17 @@ import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 })
 export class InteractiveMapComponent implements AfterViewInit, OnDestroy {
   private chart: am4maps.MapChart;
+  private selectedLand: SafeUrl;
 
-  constructor(private zone: NgZone) {}
+  get mapSrc() {
+    return this.selectedLand
+      ? this.sanitizer.bypassSecurityTrustResourceUrl(
+          `assets/map_${this.selectedLand}.html`
+        )
+      : null;
+  }
+
+  constructor(private zone: NgZone, private sanitizer: DomSanitizer) {}
 
   ngAfterViewInit() {
     this.zone.runOutsideAngular(() => {
@@ -39,13 +50,42 @@ export class InteractiveMapComponent implements AfterViewInit, OnDestroy {
 
       // Configure series tooltip
       let polygonTemplate = polygonSeries.mapPolygons.template;
-      polygonTemplate.tooltipText = '{name}: {value}';
+      polygonTemplate.tooltipText = '{name}';
+      polygonTemplate.togglable = true;
+      polygonTemplate.applyOnClones = true;
       polygonTemplate.nonScalingStroke = true;
       polygonTemplate.strokeWidth = 0.5;
 
-      // Create hover state and set alternative fill color
+      let lastSelected: am4maps.MapPolygon;
+
+      let self = this;
+      polygonTemplate.events.on('hit', function (ev) {
+        if (lastSelected) {
+          // This line serves multiple purposes:
+          // 1. Clicking a country twice actually de-activates, the line below
+          //    de-activates it in advance, so the toggle then re-activates, making it
+          //    appear as if it was never de-activated to begin with.
+          // 2. Previously activated countries should be de-activated.
+          lastSelected.isActive = false;
+        }
+        // ev.target.series.chart.zoomToMapObject(ev.target);
+        if (lastSelected !== ev.target) {
+          lastSelected = ev.target;
+          self.zone.run(
+            () =>
+              (self.selectedLand = lastSelected.dataItem.dataContext[
+                'name'
+              ].toLowerCase())
+          );
+        }
+      });
+
+      /* Create selected and hover states and set alternative fill color */
+      let ss = polygonTemplate.states.create('active');
+      ss.properties.fill = chart.colors.getIndex(2);
+
       let hs = polygonTemplate.states.create('hover');
-      hs.properties.fill = chart.colors.getIndex(1).brighten(-0.5);
+      hs.properties.fill = chart.colors.getIndex(4);
     });
   }
 

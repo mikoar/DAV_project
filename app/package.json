@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "lint": "ng lint",
-    "publish": "ng build --prod --base-href \"DAV_project\" && ngh"
+    "publish": "ng build --prod --build-optimizer=false --base-href \"DAV_project\" && ngh"
   },
   "private": true,
   "dependencies": {
