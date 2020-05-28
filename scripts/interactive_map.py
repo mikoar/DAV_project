@@ -1,3 +1,18 @@
 
 
-lands = "brandenburg, berlin, baden-württemberg, bavaria, bremen, hesse, hamburg, mecklenburg-western pomerania, lower saxony, north rhine-westphalia, rhineland-palatinate, schleswig-holstein, saarland, saxony, sachsen-anhalt, thuringia"
+landsMapping = {"Brandenburg": "brandenburg",
+                "Berlin": "berlin",
+                "Baden-Württemberg": "baden-württemberg",
+                "Bavaria": "bavaria",
+                "Bremen": "bremen",
+                "Hesse": "hesse",
+                "Hamburg": "hamburg",
+                "Mecklenburg-Western Pomerania": "mecklenburg-western_pomerania",
+                "Lower Saxony": "lower_saxony",
+                "North Rhine-Westphalia": "north_rhine-westphalia",
+                "Rhineland-palatinate": "rhineland-palatinate",
+                "Schleswig-holstein": "schleswig-holstein",
+                "Saarland": "saarland",
+                "Saxony": "saxony",
+                "Saxony-Anhalt": "sachsen-anhalt",
+                "Thuringia": "thuringia"}

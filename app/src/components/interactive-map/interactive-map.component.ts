@@ -73,9 +73,9 @@ export class InteractiveMapComponent implements AfterViewInit, OnDestroy {
           lastSelected = ev.target;
           self.zone.run(
             () =>
-              (self.selectedLand = lastSelected.dataItem.dataContext[
-                'name'
-              ].toLowerCase())
+              (self.selectedLand = self.cleanLandName(
+                lastSelected.dataItem.dataContext['name']
+              ))
           );
         }
       });
@@ -95,5 +95,9 @@ export class InteractiveMapComponent implements AfterViewInit, OnDestroy {
         this.chart.dispose();
       }
     });
+  }
+
+  private cleanLandName(name: string) {
+    return name.toLowerCase().replace(' ', '_');
   }
 }
