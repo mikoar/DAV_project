@@ -15,12 +15,12 @@ export class InteractiveMapComponent implements AfterViewInit, OnDestroy {
   private chart: am4maps.MapChart;
   private selectedLand: SafeUrl;
 
-  get mapSrc() {
-    return this.selectedLand
-      ? this.sanitizer.bypassSecurityTrustResourceUrl(
-          `assets/map_${this.selectedLand}.html`
-        )
-      : null;
+  get cumulatedPlotSrc() {
+    return this.getPlotSrc('cumulated');
+  }
+
+  get dailyPlotSrc() {
+    return this.getPlotSrc('daily');
   }
 
   constructor(private zone: NgZone, private sanitizer: DomSanitizer) {}
@@ -99,5 +99,13 @@ export class InteractiveMapComponent implements AfterViewInit, OnDestroy {
 
   private cleanLandName(name: string) {
     return name.toLowerCase().replace(' ', '_');
+  }
+
+  private getPlotSrc(suffix: string) {
+    return this.selectedLand
+      ? this.sanitizer.bypassSecurityTrustResourceUrl(
+          `assets/map_${this.selectedLand}_${suffix}.html`
+        )
+      : null;
   }
 }

@@ -1,4 +1,19 @@
 <div id="wrapper">
   <div id="map-chart"></div>
-  <iframe [src]="mapSrc" frameborder="0" width="700px" height="500px"></iframe>
+  <div>
+    <iframe
+      *ngIf="dailyPlotSrc"
+      [src]="dailyPlotSrc"
+      frameborder="0"
+      width="800px"
+      height="350px"
+    ></iframe>
+    <iframe
+      *ngIf="cumulatedPlotSrc"
+      [src]="cumulatedPlotSrc"
+      frameborder="0"
+      width="800px"
+      height="350px"
+    ></iframe>
+  </div>
 </div>

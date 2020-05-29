@@ -1,9 +1,13 @@
 #wrapper {
   display: flex;
   align-items: center;
+  max-width: 1200px;
+  > div {
+    width: 800px;
+  }
 }
 
 #map-chart {
-  width: 700px;
-  height: 1024px;
+  width: 400px;
+  height: 650px;
 }
