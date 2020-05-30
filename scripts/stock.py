@@ -13,6 +13,7 @@ def normalize(df):
 dax_data = normalize(pd.read_csv("../data/^dax_d.csv"))
 shc_data = normalize(pd.read_csv("../data/^shc_d.csv"))
 spx_data = normalize(pd.read_csv("../data/^spx_d.csv"))
+wig_data = normalize(pd.read_csv("../data/wig_d.csv"))
 
 
 fig = go.Figure(data=[go.Candlestick(name='DAX', x=dax_data['Date'],
@@ -20,14 +21,19 @@ fig = go.Figure(data=[go.Candlestick(name='DAX', x=dax_data['Date'],
                                      low=dax_data['Low'], close=dax_data['Close']),
 
                       go.Candlestick(name='SSE Composite', x=shc_data['Date'],
-                                     increasing_line_color='cyan', decreasing_line_color='gray',
+                                     increasing_line_color='yellow', decreasing_line_color='purple',
                                      open=shc_data['Open'], high=shc_data['High'],
                                      low=shc_data['Low'], close=shc_data['Close']),
 
                       go.Candlestick(name='S&P 500', x=spx_data['Date'],
-                                     increasing_line_color='blue', decreasing_line_color='magenta',
+                                     increasing_line_color='blue', decreasing_line_color='orange',
                                      open=spx_data['Open'], high=spx_data['High'],
-                                     low=spx_data['Low'], close=spx_data['Close'])
+                                     low=spx_data['Low'], close=spx_data['Close']),
+
+                      go.Candlestick(name='WIG', x=wig_data['Date'],
+                                     increasing_line_color='springgreen', decreasing_line_color='fuchsia',
+                                     open=wig_data['Open'], high=wig_data['High'],
+                                     low=wig_data['Low'], close=wig_data['Close'])
                       ])
 
 fig.update_layout(title={'text': 'Covid impact on stock market', 'xanchor': "center", 'x': 0.5})
