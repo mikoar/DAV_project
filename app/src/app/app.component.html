@@ -1,129 +1,144 @@
 <div>
   <mat-toolbar>COVID in Germany</mat-toolbar>
-  <div class="cards-container">
-    <mat-card>
-      <iframe
-        src="assets/germany_covid_main.html"
-        frameborder="0"
-        width="1200px"
-        height="600px"
-      ></iframe>
-    </mat-card>
+  <mat-tab-group animationDuration="0ms" #tabGroup>
+    <mat-tab label="Cases and deaths">
+      <div class="cards-container">
+        <mat-card>
+          <iframe
+            src="assets/germany_covid_main.html"
+            frameborder="0"
+            width="1200px"
+            height="600px"
+          ></iframe>
+        </mat-card>
 
-    <mat-card>
-      <iframe
-        src="assets/germany_mobility.html"
-        frameborder="0"
-        width="1200px"
-        height="600px"
-      ></iframe>
-    </mat-card>
+        <mat-card>
+          <iframe
+            src="assets/violin_plot_germany_cumulated.html"
+            frameborder="0"
+            width="1200px"
+            height="600px"
+          ></iframe>
+        </mat-card>
 
-    <mat-card>
-      <iframe
-        src="assets/violin_plot_germany_cumulated.html"
-        frameborder="0"
-        width="1200px"
-        height="600px"
-      ></iframe>
-    </mat-card>
+        <mat-card>
+          <iframe
+            src="assets/violin_plot_Germany_daily.html"
+            frameborder="0"
+            width="1200px"
+            height="600px"
+          ></iframe>
+        </mat-card>
 
-    <mat-card>
-      <iframe
-        src="assets/violin_plot_Germany_daily.html"
-        frameborder="0"
-        width="1200px"
-        height="600px"
-      ></iframe>
-    </mat-card>
+        <mat-card>
+          <iframe
+            src="assets/daily_cases_per_million.html"
+            frameborder="0"
+            width="1200px"
+            height="600px"
+          ></iframe>
+        </mat-card>
 
-    <mat-card>
-      <iframe
-        src="assets/daily_cases_per_million.html"
-        frameborder="0"
-        width="1200px"
-        height="600px"
-      ></iframe>
-    </mat-card>
+        <mat-card>
+          <iframe
+            src="assets/daily_deaths_per_million.html"
+            frameborder="0"
+            width="1200px"
+            height="600px"
+          ></iframe>
+        </mat-card>
 
-    <mat-card>
-      <iframe
-        src="assets/daily_deaths_per_million.html"
-        frameborder="0"
-        width="1200px"
-        height="600px"
-      ></iframe>
-    </mat-card>
+        <mat-card>
+          <iframe
+            src="assets/total_cases_per_million.html"
+            frameborder="0"
+            width="1200px"
+            height="600px"
+          ></iframe>
+        </mat-card>
 
-    <mat-card>
-      <iframe
-        src="assets/total_cases_per_million.html"
-        frameborder="0"
-        width="1200px"
-        height="600px"
-      ></iframe>
-    </mat-card>
+        <mat-card>
+          <iframe
+            src="assets/total_deaths_per_million.html"
+            frameborder="0"
+            width="1200px"
+            height="600px"
+          ></iframe>
+        </mat-card>
+      </div>
+    </mat-tab>
 
-    <mat-card>
-      <iframe
-        src="assets/total_deaths_per_million.html"
-        frameborder="0"
-        width="1200px"
-        height="600px"
-      ></iframe>
-    </mat-card>
+    <mat-tab label="By regions">
+      <div class="cards-container">
+        <mat-card>
+          <iframe
+            src="assets/federal_states_by_neighbours.html"
+            frameborder="0"
+            width="1200px"
+            height="600px"
+          ></iframe>
+        </mat-card>
 
-    <mat-card>
-      <iframe
-        src="assets/federal_states_by_neighbours.html"
-        frameborder="0"
-        width="1200px"
-        height="600px"
-      ></iframe>
-    </mat-card>
+        <mat-card *ngIf="tabGroup.selectedIndex == 1">
+          <mat-card-title>Covid cases by region</mat-card-title>
+          <app-interactive-map></app-interactive-map>
+        </mat-card>
+      </div>
+    </mat-tab>
 
-    <mat-card>
-      <iframe
-        src="assets/tests_per_confirmed_case.html"
-        frameborder="0"
-        width="1200px"
-        height="500px"
-      ></iframe>
-    </mat-card>
+    <mat-tab label="Economy & lifestyle">
+      <div class="cards-container">
+        <mat-card>
+          <iframe
+            src="assets/germany_mobility.html"
+            frameborder="0"
+            width="1200px"
+            height="600px"
+          ></iframe>
+        </mat-card>
 
-    <mat-card>
-      <mat-card-title>Covid cases by region</mat-card-title>
-      <app-interactive-map></app-interactive-map>
-    </mat-card>
+        <mat-card>
+          <iframe
+            src="assets/stock.html"
+            frameborder="0"
+            width="1200px"
+            height="600px"
+          ></iframe>
+        </mat-card>
+      </div>
+    </mat-tab>
 
-    <mat-card>
-      <iframe
-        src="assets/stock.html"
-        frameborder="0"
-        width="1200px"
-        height="600px"
-      ></iframe>
-    </mat-card>
+    <mat-tab label="Other">
+      <div class="cards-container">
+        <mat-card>
+          <iframe
+            src="assets/tests_per_confirmed_case.html"
+            frameborder="0"
+            width="1200px"
+            height="500px"
+          ></iframe>
+        </mat-card>
 
-    <mat-card>
-      <iframe
-        src="assets/various_comparisons.html"
-        frameborder="0"
-        width="1200px"
-        height="600px"
-      ></iframe>
-    </mat-card>
-
-    <mat-card>
-      <mat-card-title>Sources</mat-card-title>
-      <p>
-        https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/dd4580c810204019a7b8eb3e0b329dd6_0
-      </p>
-      <p>https://www.google.com/covid19/mobility/</p>
-      <p>
-        https://ourworldindata.org/grapher/number-of-covid-19-tests-per-confirmed-case-bar-chart?time=2020-05-02
-      </p>
-      <p>https://stooq.pl/</p>
-    </mat-card>
-  </div>
+        <mat-card>
+          <iframe
+            src="assets/various_comparisons.html"
+            frameborder="0"
+            width="1200px"
+            height="600px"
+          ></iframe>
+        </mat-card>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+  <mat-card>
+    <mat-card-title>Sources</mat-card-title>
+    <p>
+      https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/dd4580c810204019a7b8eb3e0b329dd6_0
+    </p>
+    <p>https://www.google.com/covid19/mobility/</p>
+    <p>
+      https://ourworldindata.org/grapher/number-of-covid-19-tests-per-confirmed-case-bar-chart?time=2020-05-02
+    </p>
+    <p>https://stooq.pl/</p>
+  </mat-card>
 </div>
