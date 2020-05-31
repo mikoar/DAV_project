@@ -46,6 +46,7 @@ federa_state_neighbours_dict = {
 data["federal_state"] = [federa_state_dict[x] for x in data.Bundesland]
 data_pop = data.groupby(["Meldedatum","federal_state"]).size().reset_index(name='counts')
 data_pop.columns = ["date", "federal_state",  "counts"]
+data_pop.date = data_pop.date.apply(lambda x: x.replace(' 00:00:00', ''))
 
 df1 = pd.DataFrame({"federal_state" : data_pop.federal_state.unique(), "key": 0})
 df2 = pd.DataFrame({'date': data_pop.date.unique(), "key": 0})

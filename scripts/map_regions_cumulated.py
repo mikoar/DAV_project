@@ -47,7 +47,7 @@ for region, data_pop in zip(regions, data_by_regions):
 
     fig = px.bar(total_pop, x="age_group", y="no_csum",  color="sex", barmode='group', animation_frame="date", labels={"age_group": "Age Group", "no_csum": "Number of people diagnosed with Covid-19"}
                  )
-    fig.update_yaxes(range=[0, total_pop.no_csum.max()])
+    fig.update_yaxes(range=[0, 1.1*total_pop.no_csum.max()])
     fig.update_layout(barmode='group', xaxis={'categoryarray': ["A00-A04", "A05-A14", "A15-A34", "A35-A59", "A60-A79", "A80+"], 'type': 'category'},
                       title={'text': f'Cumulated cases of Covid-19 by sex and age group in {region}', 'xanchor': "center", 'x': 0.5})
 
