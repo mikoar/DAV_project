@@ -3,6 +3,7 @@ import plotly.express as px
 import pandas as pd
 import sys
 from functools import reduce
+import json
 
 data = pd.read_csv("../data/RKI_COVID19.csv")
 
@@ -32,6 +33,7 @@ regionNamesMappingToFileName = {
     "Thüringen": "thuringia"
 }
 
+cumulated = []
 # %%
 for region, data_pop in zip(regions, data_by_regions):
     df1 = pd.DataFrame({"sex": ["W", "M"], "key": 0})
@@ -49,6 +51,8 @@ for region, data_pop in zip(regions, data_by_regions):
     fig.update_layout(barmode='group', xaxis={'categoryarray': ["A00-A04", "A05-A14", "A15-A34", "A35-A59", "A60-A79", "A80+"], 'type': 'category'},
                       title={'text': f'Cumulated cases of Covid-19 by sex and age group in {region}', 'xanchor': "center", 'x': 0.5})
 
+    cumulated.append({"id": regionNamesMappingToFileName[region], "value": total_pop.no_csum.max()})
+
     args = sys.argv
     if len(args) > 1:
         if args[1] == "1":
@@ -60,3 +64,6 @@ for region, data_pop in zip(regions, data_by_regions):
             fig.show()
     else:
         fig.show()
+
+with open('../plots/map_regions_cumulated.json', 'w') as outfile:
+    json.dump(cumulated, outfile)
