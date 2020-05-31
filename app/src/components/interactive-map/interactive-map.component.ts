@@ -81,8 +81,8 @@ export class InteractiveMapComponent implements AfterViewInit, OnDestroy {
       });
 
       /* Create selected and hover states and set alternative fill color */
-      let ss = polygonTemplate.states.create('active');
-      ss.properties.fill = chart.colors.getIndex(2);
+      // let ss = polygonTemplate.states.create('active');
+      // ss.properties.fill = chart.colors.getIndex(2);
 
       let hs = polygonTemplate.states.create('hover');
       hs.properties.fill = chart.colors.getIndex(4);
