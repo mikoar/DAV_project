@@ -61,7 +61,7 @@ fig = px.bar(total_pop, x="federal_state", y="no_csum",  color = "neighbour"
 #              noeboeski, innazieleń,  turkusowy, różowy, pomarańczowy, zielony, czerwony, fioletowy, zółty
 #              aliceblue, darkgreen, aquamarine, lightcoral, lightsalmon, chartreuse, indianred, lavender, gold
              ,animation_frame="date"
-             ,labels={"federal_state": "Federal State", "no_csum": "Number of people diagnosed with Covid-19"}
+             ,labels={"federal_state": "", "no_csum": "Number of people diagnosed with Covid-19"}
             )
 fig.update_yaxes(range=[0, 35000])
 
