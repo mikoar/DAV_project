@@ -74,8 +74,8 @@ fig.add_traces(go.Bar(
 updatemenus = list([
     dict(active=1,
          yanchor="top",
-         x=0.13,
-         y=1.05,
+         x=0.2,
+         y=1.1,
          buttons=list([
             dict(label='Retail & Recreation',
                  method='update',
